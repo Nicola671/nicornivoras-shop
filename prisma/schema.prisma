@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+}
+
+model Plant {
+  id             String   @id @default(cuid())
+  name           String
+  scientificName String
+  description    String?
+  price          Float
+  images         Image[]
+  availableSizes PlantSize[]
+  featured       Boolean  @default(false)
+  category       String
+  stock          Int      @default(1)
+}
+
+model Image {
+  id      String @id @default(cuid())
+  url     String
+  plant   Plant  @relation(fields: [plantId], references: [id], onDelete: Cascade)
+  plantId String
+}
+
+model PlantSize {
+  id      String @id @default(cuid())
+  size    Size
+  price   Float  @default(0)
+  plant   Plant  @relation(fields: [plantId], references: [id], onDelete: Cascade)
+  plantId String
+
+  @@unique([plantId, size])
+}
+
+enum Size {
+  S
+  M
+  L
+  XL
+  XXL
+}
