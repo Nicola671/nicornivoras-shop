@@ -18,7 +18,7 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    
+
     const result = await signIn('credentials', {
       redirect: false,
       username,
@@ -34,8 +34,8 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen carnivorous-bg">
-      <Header />
-      
+      <Header onSearch={() => { }} onFilter={() => { }} />
+
       <main className="container mx-auto px-4 py-16">
         <div className="max-w-md mx-auto">
           <Card className="glass-effect">
@@ -60,7 +60,7 @@ export default function LoginPage() {
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="password" className="text-sm font-medium">
                     Contraseña
@@ -74,13 +74,13 @@ export default function LoginPage() {
                     required
                   />
                 </div>
-                
+
                 {error && (
                   <div className="text-sm text-destructive text-center">
                     {error}
                   </div>
                 )}
-                
+
                 <Button type="submit" className="w-full">
                   Iniciar Sesión
                 </Button>
@@ -89,7 +89,7 @@ export default function LoginPage() {
           </Card>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   )
