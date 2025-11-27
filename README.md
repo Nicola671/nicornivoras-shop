@@ -35,3 +35,7 @@ npm run dev
 - Teléfono: 223 616 0926
 - Instagram: [@nicornivoras](https://www.instagram.com/nicornivoras?igsh=Yng5cjAwajN5Y3U5)
 - Facebook: [Nicornivoras](https://www.facebook.com/share/17fik6nYUu/)
+
+---
+
+**Nota:** Base de datos PostgreSQL configurada con Supabase.
