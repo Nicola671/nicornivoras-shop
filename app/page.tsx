@@ -16,10 +16,25 @@ export default function Home() {
     const fetchPlants = async () => {
       try {
         const response = await fetch('/api/plants');
+
+        if (!response.ok) {
+          console.error('API error:', response.status, response.statusText);
+          setPlants([]);
+          return;
+        }
+
         const data = await response.json();
-        setPlants(data);
+
+        // Verificar que data sea un array
+        if (Array.isArray(data)) {
+          setPlants(data);
+        } else {
+          console.error('API returned non-array data:', data);
+          setPlants([]);
+        }
       } catch (error) {
         console.error('Error fetching plants:', error);
+        setPlants([]);
       }
     };
 
